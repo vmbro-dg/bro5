@@ -27,8 +27,9 @@ async def run_browser():
         await page.wait_for_timeout(5000)
         await page.wait_for_selector("#url")
         await page.fill("#url", URL)
-        await page.wait_for_timeout(10000)
-        await page.click("text=Launch Workspace")
+        await page.wait_for_timeout(2000)
+        await page.wait_for_selector("button[type='submit']")
+        await page.click("button[type='submit']")
         minutos = MINUTOS
         # await asyncio.sleep(minutos * 60)
         await page.wait_for_timeout(minutos * 60 * 1000)
