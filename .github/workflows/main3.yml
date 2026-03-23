@@ -19,13 +19,20 @@ jobs:
         run: docker build -t bot .
 
       - name: Run Docker
+        env:
+          URL_BROWSER: ${{ secrets.URL_BROWSER }}
+          URL: ${{ secrets.URL }}
+          MINUTOS: ${{ secrets.MINUTOS }}
         run: |
           docker run --rm \
             -v "${{ github.workspace }}:/app" \
+            -e URL_BROWSER="$URL_BROWSER" \
+            -e URL="$URL" \
+            -e MINUTOS="$MINUTOS" \
             bot
 
       - name: Upload screenshot
         uses: actions/upload-artifact@v4
         with:
           name: screenshot
-          path: screen.png
+          path: "*.png"
