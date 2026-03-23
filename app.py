@@ -16,8 +16,8 @@ from camoufox import DefaultAddons
 URL_BROWSER = os.getenv("URL_BROWSER")
 URL = os.getenv("URL")
 MINUTOS = int(os.getenv("MINUTOS", 5))
+NUM_BROWSERS = int(os.getenv("NUM_BROWSERS", 1))
 MAX_RETRIES = 3
-NUM_BROWSERS= int(os.getenv("NUM_BROWSERS", 1))
 
 async def run_browser(i):
     async with AsyncCamoufox(
