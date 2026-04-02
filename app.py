@@ -11,6 +11,7 @@ SENHA = os.getenv("SENHA")
 MINUTOS = int(os.getenv("MINUTOS", 5))
 NUM_BROWSERS = int(os.getenv("NUM_BROWSERS", 1))
 MAX_RETRIES = 3
+DELAY = 5
 
 async def run_browser(i):
     async with AsyncCamoufox(
@@ -39,6 +40,11 @@ async def run_browser(i):
         await page.wait_for_timeout(MINUTOS * 60 * 1000)
         await page.screenshot(path=f"screen_{i+1}.png", full_page=True)
 
+# 🔥 NOVA FUNÇÃO COM DELAY
+async def run_with_delay(i):
+    await asyncio.sleep(i * DELAY)
+    print(f"🌐 Browser {i+1} iniciando após {i * DELAY}s")
+    await run_browser(i)
 
 async def main():
     # print("🚀 Iniciando navegadores...")
@@ -47,7 +53,7 @@ async def main():
     while True:
         try:
             print("🚀 Iniciando navegadores...")
-            await asyncio.gather(*[run_browser(i) for i in range(NUM_BROWSERS)])
+            await asyncio.gather(*[run_with_delay(i) for i in range(NUM_BROWSERS)])
             print("✅ Finalizado com sucesso")
             break
         except Exception as e:
