@@ -7,6 +7,7 @@ jobs:
 test-ip:
 runs-on: ubuntu-latest
 
+
 strategy:
   fail-fast: false
   matrix:
@@ -19,4 +20,6 @@ steps:
   - name: Mostrar IP público
     run: |
       echo "IP do job ${{ matrix.id }}:"
-      run: curl -s https://ipinfo.io/json
+      curl -s https://ipinfo.io/json
+      echo ""
+
