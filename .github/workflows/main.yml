@@ -10,6 +10,10 @@ on:
 jobs:
   run:
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        id: [1,2,3]
 
     steps:
       - name: Checkout
