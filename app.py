@@ -17,7 +17,6 @@ async def run_browser(i, email):
     async with async_playwright() as p:
         browser = await p.chromium.launch(headless=True)
         page = await browser.new_page()
-        page = await browser.new_page()
         login = random.choice([True, False])
         if login and email:
             await page.goto(f"{URL_BROWSER}/auth", wait_until="domcontentloaded")
