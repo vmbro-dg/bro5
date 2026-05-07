@@ -21,7 +21,7 @@ COPY requirements.txt .
 RUN pip install --upgrade pip && \
     pip install --no-cache-dir -r requirements.txt
 
-RUN python -m camoufox fetch || true
+RUN python -m playwright install || true
 
 COPY . .
 
